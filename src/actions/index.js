@@ -207,9 +207,12 @@ export function hoverMarker(coordinates) {
 }
 
 export function setRouteIndex(routeIndex) {
-  return {
-    type: types.ROUTE_INDEX,
-    routeIndex
+  return (dispatch) => {
+    dispatch({
+      type: types.ROUTE_INDEX,
+      routeIndex
+    });
+    dispatch(eventEmit('routeIndex', { routeIndex }));
   };
 }
 
@@ -234,6 +237,15 @@ export function setProfile(profile) {
     const { origin, destination } = getState();
     dispatch({ type: types.DIRECTIONS_PROFILE, profile });
     dispatch(eventEmit('profile', { profile }));
+    if (origin.geometry && destination.geometry) dispatch(fetchDirections());
+  };
+}
+
+export function setExclude(exclude) {
+  return (dispatch, getState) => {
+    const { origin, destination } = getState();
+    dispatch({ type: types.DIRECTIONS_EXCLUDE, exclude });
+    dispatch(eventEmit('exclude', { exclude }));
     if (origin.geometry && destination.geometry) dispatch(fetchDirections());
   };
 }

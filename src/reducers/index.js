@@ -46,7 +46,7 @@ const initialState = {
 
   // Directions data
   directions: [],
-  routeIndex: 0, 
+  routeIndex: 0,
   routePadding: 80
 };
 
@@ -58,6 +58,11 @@ function data(state = initialState, action) {
   case types.DIRECTIONS_PROFILE:
     return Object.assign({}, state, {
       profile: action.profile
+    });
+
+  case types.DIRECTIONS_EXCLUDE:
+    return Object.assign({}, state, {
+      exclude: action.exclude
     });
 
   case types.ORIGIN:
