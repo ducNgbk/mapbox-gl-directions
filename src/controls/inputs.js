@@ -66,7 +66,8 @@ export default class Inputs {
     const { geocoder, accessToken, flyTo, placeholderOrigin, placeholderDestination, zoom } = this.store.getState();
 
     this.originInput = new Geocoder(Object.assign({}, {
-      accessToken
+      accessToken,
+      country: 'sg',
     }, geocoder, {flyTo, placeholder: placeholderOrigin, zoom}));
 
     const originEl = this.originInput.onAdd(this._map);
@@ -74,7 +75,8 @@ export default class Inputs {
     originContainerEl.appendChild(originEl);
 
     this.destinationInput = new Geocoder(Object.assign({}, {
-      accessToken
+      accessToken,
+      country: 'sg',
     }, geocoder, {flyTo, placeholder: placeholderDestination, zoom}));
 
     const destinationEl = this.destinationInput.onAdd(this._map);
